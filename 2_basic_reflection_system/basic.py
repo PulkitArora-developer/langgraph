@@ -34,7 +34,14 @@ def should_continue(state):
     return REFLECT
 
 
-graph.add_conditional_edges(GENERATE, should_continue)
+graph.add_conditional_edges(
+    GENERATE,
+    should_continue,
+    {
+        REFLECT: REFLECT,
+        END: END,
+    }
+)
 graph.add_edge(REFLECT, GENERATE)
 
 app = graph.compile()
